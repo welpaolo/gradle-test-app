@@ -19,7 +19,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Install Java
-        run: apt install default-jdk -y
+        run: sudo apt install default-jdk -y
       - name: Packing the application
         run: ./gradlew assemble
       - name: Check artifact existence
