@@ -1,0 +1,35 @@
+name: Test Build
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  pull_request:
+  schedule:
+    - cron: '53 0 * * *' # Daily at 00:53 UTC
+  workflow_call:
+
+jobs:
+  build:
+    name: Build project
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install Java
+        run: apt install default-jdk -y
+      - name: Packing the application
+        run: ./gradlew assemble
+      - name: Check artifact existence
+        id: check_files
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "app/build/distributions/app.zip"
+      - name: Artifact exists
+        if: steps.check_files.outputs.files_exists == 'true'
+        run: echo "It exists !"
+      - name: Artifact does not exist
+        if: steps.check_files.outputs.files_exists == 'false'
+        run: exit 1
