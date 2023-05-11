@@ -3,12 +3,16 @@
  */
 package demo;
 
+import com.google.common.collect.ImmutableList;
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
+    public String getGreeting(ImmutableList<String> args) {
+        return "Hello " + String.join(",", args) + "!";
     }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+
+        ImmutableList<String> immutable_list = ImmutableList.copyOf(args);
+
+        System.out.println(new App().getGreeting(immutable_list));
     }
 }

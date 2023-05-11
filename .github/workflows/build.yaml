@@ -25,7 +25,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
       - name: Packing the application
-        run: sh gradlew assemble
+        run: sh gradlew test assemble
       - name: Check artifact existence
         id: check_files
         uses: andstor/file-existence-action@v1
