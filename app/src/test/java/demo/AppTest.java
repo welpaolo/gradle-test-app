@@ -5,10 +5,11 @@ package demo;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import com.google.common.collect.ImmutableList;
 
 class AppTest {
     @Test void appHasAGreeting() {
         App classUnderTest = new App();
-        assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
+        assertNotNull(classUnderTest.getGreeting(ImmutableList.of("World")), "app should have a greeting");
     }
 }
