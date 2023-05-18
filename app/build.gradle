@@ -19,7 +19,7 @@ repositories {
 	    credentials
             {
                 username = System.getenv("ARTIFACTORY_USER")
-                password = System.getenv("artifactory_password")
+                password = System.getenv("ARTIFACTORY_PASSWORD")
             }
 	    allowInsecureProtocol = true
         }
