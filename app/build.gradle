@@ -12,8 +12,17 @@ plugins {
 }
 
 repositories {
-    // Use Maven Central for resolving dependencies.
-    mavenCentral()
+    // Use Custom repo for resolving dependencies.
+    maven 
+        {
+            url = "${artifactory_url}"
+	    credentials
+            {
+                username = "${artifactory_user}"
+                password = "${artifactory_password}"
+            }
+	    allowInsecureProtocol = true
+        }
 }
 
 dependencies {
@@ -22,7 +31,9 @@ dependencies {
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:31.1-jre'
+
 }
+
 
 // Apply a specific Java toolchain to ease working on different environments.
 java {
