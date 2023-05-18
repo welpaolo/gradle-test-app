@@ -15,11 +15,11 @@ repositories {
     // Use Custom repo for resolving dependencies.
     maven 
         {
-            url = "${artifactory_url}"
+            url = System.getenv("ARTIFACTORY_URL")
 	    credentials
             {
-                username = "${artifactory_user}"
-                password = "${artifactory_password}"
+                username = System.getenv("ARTIFACTORY_USER")
+                password = System.getenv("artifactory_password")
             }
 	    allowInsecureProtocol = true
         }
