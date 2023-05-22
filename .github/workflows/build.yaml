@@ -25,6 +25,10 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
       - name: Packing the application
+        env:
+          ARTIFACTORY_URL: ${{secrets.ARTIFACTORY_URL}}
+          ARTIFACTORY_USER: ${{secrets.ARTIFACTORY_USER}}
+          ARTIFACTORY_PASSWORD: ${{secrets.ARTIFACTORY_PASSWORD}}
         run: sh gradlew test assemble
       - name: Check artifact existence
         id: check_files
